@@ -1,0 +1,30 @@
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+
+education = EducationData
+
+#For Categorical Variables, please factor the variables
+
+colnames(education)
+
+education$Educ = factor(education$Educ)
+
+#Distribution
+education %>% filter(Educ == 12 | Educ == 16) %>% 
+  ggplot(aes(x = Income2005, after_stat(density),  color = Educ, fill = Educ)) +
+  geom_freqpoly() + 
+  ggtitle("Density Plot of Income Distribution between 12 and 16 Years of Education")
+
+#LOG TRANSFORMATION
+education$logincome = log(education$Income2005)
+
+education %>% filter(Educ == 12 | Educ == 16) %>% 
+  ggplot(aes(x = logincome, after_stat(density),  color = Educ, fill = Educ)) +
+  geom_freqpoly() + 
+  ggtitle("Density Plot of Income Distribution between 12 and 16 Years of Education")
+
+t.test(education$logincome~education$Educ,var.equal=TRUE)
+
+t.test(education$logincome~education$Educ,alternative = "less", var.equal=TRUE, conf.level=0.90)
+
