@@ -15,3 +15,6 @@ power.t.test(delta=.07,sd=.20,sig.level = .05, power = .8, type = "one.sample",a
 
 #Calculate N with Power at 80% two sided
 power.t.test(delta=.07,sd=.20,sig.level = .05, power = .8, type = "one.sample",alternative="two.sided")
+
+#n is number in each group, two sample
+power.t.test(500,delta=.2,sd=1.4554,sig.level = .05, type = "two.sample",alternative="two.sided")
