@@ -1,4 +1,5 @@
 ### R Code
+t.test(Rating ~ Treatment, data=covid, var.equal=T, alternative='two.sided',conf.=.99)
 
 
 t.test(Cash ~ School, data=money, var.equal=T, alternative='two.sided')
