@@ -1,0 +1,23 @@
+covid = VXTrial
+
+library(tidyselect)
+library(dplyr)
+library(ggplot2)
+
+#IMPORTANT Graph Distributions of Both
+covid %>% ggplot(aes(x=Appetite, color=Treatment)) +geom_bar() + facet_wrap(~Treatment)
+
+#counting
+
+count(covid, c("Treament","Placebo", "Vaccine"))
+
+#Count the number in each 
+covid %>% filter(covid$Treatment=="Vaccine") %>% count()
+
+covid %>% filter(covid$Treatment=="Placebo") %>% count()
+
+#Check for equal variances
+var.test(Appetite~Treatment,covid,alternative = "two.sided")
+
+#T.Test Welch
+t.test(Appetite~Treatment,covid,var.equal=FALSE, alternative="two.sided",conf.level=0.90)
