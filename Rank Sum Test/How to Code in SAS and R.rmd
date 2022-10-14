@@ -1,0 +1,28 @@
+### Assumptions
+The data are ordinal as they are percentages of seedlings. 
+We will assume the observations are independent, although significant spatial correlation may be present. 
+You may also have assumed that the distributions were the same, except for location.
+
+
+### SAS
+*To compute rank sum test;
+proc npar1way data = loggingdata wilcoxon;
+class Action;
+var PercentLost;
+exact HL Wilcoxon;
+run;
+
+proc npar1way data = loggingdata wilcoxon alpha = 0.1;
+class Action;
+var PercentLost;
+exact HL Wilcoxon;
+run;
+
+
+### R Code
+wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater")
+
+wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater",exact=FALSE)
+
+wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater",exact=FALSE,conf.level=.90)
+
