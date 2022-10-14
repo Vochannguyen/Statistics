@@ -1,0 +1,17 @@
+### R Code
+
+#Power Code
+#power.t.test(n, effective size, sd = , sig.level = , type = "one.sample", alterbative = "one.sided")
+power.t.test(250,5,sd=25,sig.level=.05, type="one.sample",alternative = "one.sided")
+
+
+
+twitch = twitch
+dim(twitch)
+power.t.test(41,.07,.20,sig.level = .05,type = "one.sample",alternative="one.sided")
+
+#Calculate N with Power at 80%
+power.t.test(delta=.07,sd=.20,sig.level = .05, power = .8, type = "one.sample",alternative="one.sided")
+
+#Calculate N with Power at 80% two sided
+power.t.test(delta=.07,sd=.20,sig.level = .05, power = .8, type = "one.sample",alternative="two.sided")
