@@ -1,0 +1,48 @@
+
+#Sample Size Professor Code
+powerholder = c()
+samplesizes = seq(60,80,length = 20)
+
+for(i in 1:20)
+{
+  powerholder[i] = power.t.test(n = samplesizes[i], delta = .07, sd = .2, sig.level = .05, type = "two.sample",alternative = "one.sided")$power
+}
+
+plot(samplesizes,powerholder,type = "l", col = "blue", main = "POWER CURVE", ylab = "POWER", lwd = 3)
+  
+  
+
+  
+  
+### R Code
+  
+powerholder = c()
+samplesizes = seq(25,156,by = 1)
+
+for(i in 1:132)
+{
+  powerholder[i] = power.t.test(n = samplesizes[i],delta = 2, sd = 10, sig.level = .05, type = "one.sample",alternative = "one.sided")$power
+}
+
+plot(samplesizes,powerholder,type = "l", col = "blue", main = "POWER CURVE", ylab = "POWER", lwd = 3)
+
+
+power.t.test(n = 47,delta = 3, sd =4.5, sig.level = .05, type = "two.sample",alternative = "one.sided")$power
+
+
+#Effect Size
+powerholder = c()
+effectsizes = seq(17,25,by = 1)
+
+for(i in 1:6)
+{
+  powerholder[i] = power.t.test(n = 25,delta = effectsizes[i], sd = 10, sig.level = .05, type = "one.sample",alternative = "one.sided")$power
+}
+
+plot(effectsizes,powerholder,type = "l", col = "blue", main = "POWER CURVE", ylab = "POWER", lwd = 3)
+
+power.t.test(n = 155,delta = 2, sd =10, sig.level = .05, type = "one.sample",alternative = "one.sided")$power
+
+power.t.test(delta = 2, sd =10, power=.8,sig.level = .05, type = "one.sample",alternative = "one.sided")
+
+abline(h=.8,v=156)
