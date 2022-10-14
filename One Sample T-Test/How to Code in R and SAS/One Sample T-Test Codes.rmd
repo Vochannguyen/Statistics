@@ -1,0 +1,11 @@
+### R
+## One Sample T-Test in R
+t.test(beach,mu=21,alternative="two.sided")
+
+
+### SAS
+## One Sample T-Test in SAS
+
+proc ttest data=beach hO = 21 sides = 2 alpha = .05;
+var age;
+run;
