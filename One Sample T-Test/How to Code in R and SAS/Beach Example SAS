@@ -1,0 +1,15 @@
+data beach;
+input age;
+datalines;
+25
+19
+37
+29
+40
+28
+31
+;
+
+proc ttest data=beach hO = 21 sides = 2 alpha = .05;
+var age;
+run;
