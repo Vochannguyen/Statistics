@@ -8,11 +8,11 @@
 
 
 ### R Code
-fit = lm(Score~Handicap, data = handicap)
+fit = lm(Number~Group, data = handicap)
 
 library(lsmeans)
 
-leastsquare=lsmeans(fit,"Handicap")
+leastsquare=lsmeans(fit,"Group")
 
 #The columns names must match order of levels of the treatment variable
 Contrasts = list(AW=c(.5,-.5,.5,0,-.5))
