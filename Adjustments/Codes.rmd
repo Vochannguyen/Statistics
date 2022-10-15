@@ -1,0 +1,24 @@
+### Bonferronni SAS Code
+
+proc ttest data = DISD40T;
+class Gender;
+var Salary;
+run;
+
+
+proc npar1way data = DISD40T Wilcoxon;
+class Gender;
+var Salary;
+run;
+
+proc glm data = DISD40T;
+class Ethnicity_;
+model Salary = Ethnicity_;
+lsmeans Ethnicity_ / pdiff;
+estimate "5 versus average of 1,2,3 Ver 1" Ethnicity_ 1 1 1 1 -4 / divisor = 4;
+estimate "5 versus average of 1,2,3 Ver 2" Ethnicity_ 1 1 1 0 -3 / divisor = 3;
+estimate "5 versus average of 1,2,3 Ver 3" Ethnicity_ .3 .3 .3 0 -3;
+estimate "5 versus average of 1,2,3 Ver 4" Ethnicity_ 1 1 1 0 -1;
+run;
+
+### Multiply the P-value by N groups
