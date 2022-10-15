@@ -26,3 +26,4 @@ Moderna$Drug = relevel(Moderna$Drug, ref = "D")
 fit = lm(Score~Drug, data = Moderna)
 gfit = glht(fit, linfct = mcp(Drug = "Dunnett"))
 summary(gfit)
+
