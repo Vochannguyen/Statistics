@@ -26,3 +26,4 @@ wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater",exa
 
 wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater",exact=FALSE,conf.level=.90)
 
+wilcox.test(IQ$Experimental.Group, IQ$Control, paired=TRUE,conf.int=TRUE, alternative="greater)
