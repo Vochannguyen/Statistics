@@ -1,0 +1,7 @@
+### SAS Code for Histogram and QQPlot
+
+proc univariate data = SportHeight;
+by Sport;
+histogram Height;
+qqplot Height;
+run;
