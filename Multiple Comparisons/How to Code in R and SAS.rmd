@@ -18,3 +18,11 @@ gfit = glht(fit,linfct=mcp(Sport="Dunnett"))
 summary(gfit)
 
 confint(gfit)
+
+### More Examples
+Moderna = read.csv(file.choose(), header = TRUE, stringsAsFactors = TRUE)
+Moderna
+Moderna$Drug = relevel(Moderna$Drug, ref = "D")
+fit = lm(Score~Drug, data = Moderna)
+gfit = glht(fit, linfct = mcp(Drug = "Dunnett"))
+summary(gfit)
