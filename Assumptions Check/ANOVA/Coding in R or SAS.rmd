@@ -1,0 +1,30 @@
+### R Code
+
+## Assumptions Check
+# Boxplot
+ggplot(df, aes(x = treatment, y = yield, fill = treatment)) + 
+  geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)
+
+
+# 1 Normality
+# Count the number of variables:
+my %>% 
+  group_by(Drug) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+
+
+
+
+# 2 Equal Variances
+# F-test
+res.ftest <- var.test(len ~ supp, data = my_data)
+res.ftest
+The p-value of F-test is p = 0.2331433 which is greater than the significance level 0.05. In conclusion, there is no significant difference between the two variances.
+
+
+## Equal Variance for Anova
+my %>% group_by(Drug) %>% summarise(var = var(LambdaDrop))
+
+# 3 Independence
