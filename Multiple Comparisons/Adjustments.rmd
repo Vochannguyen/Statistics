@@ -1,0 +1,14 @@
+### SAS Code
+
+## Tukey Adjustments in SAS
+proc glm data=myd;
+class Drug;
+model LambdaDrop = Drug;
+means drug / tukey cldiff;
+run; 
+
+proc glm data = myeloma;
+class drug;
+model LambdaDrop = Drug;
+lsmeans drug /  cl adjust = tukey;
+run;
