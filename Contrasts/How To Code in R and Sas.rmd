@@ -18,3 +18,13 @@ leastsquare=lsmeans(fit,"Handicap")
 Contrasts = list(AW=c(.5,-.5,.5,0,-.5))
 
 contrast(leastsquare,Contrasts)
+
+
+### More Examples
+2.	Next, turns out that vaccines A and B were mRNA (a new method) vaccines and C, D and E were derived from the inactive virus (the traditional method).  Researchers wanted to test if the average of the mean t-cell response from the mRNA vaccines was greater than the average mean t-cell response from the viruses that were derived using the traditional method.  Conduct the appropriate test and provide the relevant inference (conclusion.)
+
+
+library(lsmeans)
+leastsquares = lsmeans(fit,"Drug")
+Contrast = list("NewVsTraditional" = c(-1/3,1/2,1/2,-1/3,0,-1/3))
+contrast(leastsquares,Contrast)
