@@ -18,6 +18,14 @@ var PercentLost;
 exact HL Wilcoxon;
 run;
 
+# For Multiple Groups
+proc npar1way data = myeloma Wilcoxon;
+where drug eq "Revlimid" | drug eq "Velcade";
+class drug;
+var KappaDrop;
+exact HL;
+run;
+
 
 ### R Code
 wilcox.test(PercentLost~Action,data=logging,conf.int=T,alternative="greater")
