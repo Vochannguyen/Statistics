@@ -1,0 +1,59 @@
+### SAS Code
+
+Procedures:
+## Step 1) First Plot the Data - Get the Boxplots
+
+proc glm data = SportHeight;
+class Sport;
+model Height = Sport / solution;
+run;
+
+#Get the Different Plots of Means
+
+## Step 2) Check Assumptions using Brown and Forsythe
+proc glm data = SportHeight;
+class Sport;
+model Height = Sport / solution;
+means Sport / hovtest = bf;
+run;
+
+
+## Step 3) Perform 1 Way ANOVA
+proc glm data = SportHeight;
+class Sport Combine;
+model Height = Sport / solution;
+means Sport / hovtest = bf;
+run;
+
+### R Code
+
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+
+sportheight = ANOVA_Sports_Height_Example
+
+sportheight %>% ggplot(aes(x=Sport,y=Height,color=Sport)) + geom_boxplot() + ggtitle("Height Distribution based on Sports")
+
+sportheight %>% 
+  ggplot(aes(sample = Height, color = Sport)) + 	geom_qq() + 
+  geom_qq_line() + 
+  ggtitle("QQplots of Heigth Based on Sport") + 	facet_wrap(~Sport)
+
+
+#Brown-Forsythe Test in R
+library(lawstat)
+levene.test(sportheight$Height,sportheight$Sport)
+
+fit = lm(Height~Sport, data = sportheight)
+anova(fit)
+
+#Compare Two Different ANOVA using Extra SUMS
+
+fit = lm(Height~Sport, data = sportheight)
+anova(fit)
+
+fit = lm(Height~Combine, data = sportheight)
+anova(fit)
+
