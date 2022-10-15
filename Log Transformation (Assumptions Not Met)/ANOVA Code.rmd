@@ -1,0 +1,58 @@
+### ANOVA using Log Data
+
+### SAS Code
+
+*ordering data by Educ by creating a column called EO;
+data incomedata;
+set incomerdata;
+if Educ eq '<12' then EO = 1;
+ if Educ eq '12' then EO = 2;
+ if Educ eq '13-15' then EO = 3;
+ if Educ eq '16' then EO = 4;
+ if Educ eq '>16' then EO = 5;
+run;
+
+proc sort data= incomedata;
+by EO;
+run;
+
+*ANOVA;
+proc glm data = incomedata order= DATA;
+class Educ;
+model Income2005 = Educ; 
+run;
+
+*Perform a log transformation;
+data incomedata;
+set incomedata;
+logincome2005 = log(Income2005);
+run;
+
+*Address ANOVA Assumptions;
+proc univariate data=incomedata;
+by Educ;
+histogram logincome2005;
+qqplot logincome2005;
+run;
+
+*Run Data;
+proc sort data= incomedata;
+by EO;
+run;
+
+*ANOVA;
+proc glm data = incomedata order= DATA;
+class Educ;
+model logincome2005 = Educ; 
+run;
+
+proc means data = incomedata nway;
+class Educ;
+var Income2005;
+output out = incomesummary median = medianIncome mean = meanIncome;
+run;
+
+proc print data=incomesummary;
+var Educ medianIncome meanIncome;
+run;
+
