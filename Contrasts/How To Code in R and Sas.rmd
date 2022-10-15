@@ -1,0 +1,20 @@
+### SAS Code
+## Step 1) Address Assumptions
+- Look at boxplot and distributions of histograms to check normality
+- Check Equal Variances
+
+
+
+
+
+### R Code
+fit = lm(Score~Handicap, data = handicap)
+
+library(lsmeans)
+
+leastsquare=lsmeans(fit,"Handicap")
+
+#The columns names must match order of levels of the treatment variable
+Contrasts = list(AW=c(.5,-.5,.5,0,-.5))
+
+contrast(leastsquare,Contrasts)
