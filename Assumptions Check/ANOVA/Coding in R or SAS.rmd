@@ -5,6 +5,13 @@
 ggplot(df, aes(x = treatment, y = yield, fill = treatment)) + 
   geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)
 
+## Distribution
+
+EducInc %>% filter(Educ == 12 | Educ == 16) %>% 
+ggplot(aes(x = Income2005, after_stat(density),  color = FEduc, fill = FEduc)) +
+    geom_freqpoly() + 
+ggtitle("Density Plot of Income Distribution b=etween 12 and 16 Years of Education")
+![image](https://user-images.githubusercontent.com/110003333/196000280-24cbf033-2c38-4ee4-96cf-5c416faafc3b.png)
 
 # 1 Normality
 # Count the number of variables:
