@@ -1,1 +1,13 @@
-## Assumptions  
+### Assumptions  
+
+## 1 Linearity
+
+
+## 2 Constant Variance
+
+
+## 3 Normality
+
+
+## 4 Independence
+- All points must be independent of each other
