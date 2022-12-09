@@ -12,6 +12,10 @@ Step 2: Full Model from SAS
 ![image](https://user-images.githubusercontent.com/110003333/206805535-48ada604-8159-413c-803b-ed1958f02f1e.png)  
 
 Step 3: Reduced Model from SAS:
+proc glm data=cheese alpha = .10 plots=all;    
+model taste = Acetic H2S / solution clparm;   
+means Acetic H2S / hovtest = bf;   
+run;  
 ![image](https://user-images.githubusercontent.com/110003333/206806031-7f9f05fa-3669-4819-8cfa-1b6e64ae9684.png)
 
 ![image](https://user-images.githubusercontent.com/110003333/206805938-319aa9af-7e56-4a52-8ef2-e5a653eb01e0.png)
