@@ -1,9 +1,28 @@
 # Multiple Linear Regression
 
 ## SAS Code
+FILENAME REFFILE '/home/u61905605/Data/Twitterdata.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=twitter;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=twitter; RUN;
+
+
+**Option 1**  
 proc glm data=cheese alpha = .05 plots=all;  
 model taste = Acetic H2S / solution clparm;  
 run;
+
+**Option 2**  
+proc glm data=twitter alpha = .05 plots=all;  
+class Gender;
+model Followers = FollowEEs TweetsPerWk / solution clparm;  
+run;
+
 
 ### Code for Partial Residuals
 proc corr data = partialres2;  
