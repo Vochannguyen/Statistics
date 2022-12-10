@@ -226,3 +226,4 @@ Step 5: Conclusion: 0.0001 < 0.05 Reject Ho
 Step 6: Conclusion in Context
 There is strong evidence to suggest at the α = .05 level of significance (p-value = <.0001, n = 30) that the variation in the model is better explained by the regression model that includes Acetic and H2S than the equal means model.  
 
+pf(f, model, error, lower.tail = FALSE)
