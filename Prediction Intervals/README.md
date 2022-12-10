@@ -26,3 +26,7 @@ lines(newx, pred_c[,2], col = "blue", lty = 2, lwd = 2)
 lines(newx,pred_c[,3], col = "blue", lty = 2, lwd = 2)
 lines(newx,pred_p[,2], col = "green", lty = 2, lwd = 2)
 lines(newx,pred_p[,3], col = "green", lty = 2, lwd = 2)
+
+## Calibration Interval
+![image](https://user-images.githubusercontent.com/110003333/206835298-efc2093e-6f37-4421-ba71-a5779d492a86.png)
+![image](https://user-images.githubusercontent.com/110003333/206835314-e572b44c-b90c-4f42-9e9b-2f9f903642af.png)
