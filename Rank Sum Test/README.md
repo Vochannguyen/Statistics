@@ -1,5 +1,27 @@
 # Paired (Matched Pairs Dependent) T-test
 
+### Wilcox Signed Rank Test
+This test can only be used when you have a data set of dependent observations who has two set of different data on the same person.
+
+1) Check for Normality and then Check if They have the same Sample Size
+![image](https://user-images.githubusercontent.com/110003333/206860145-2d1a3094-97f5-4217-b9f2-4afa6253e876.png)
+![image](https://user-images.githubusercontent.com/110003333/206860163-5fac7f6d-fd15-436b-a451-4db94b819b24.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ![image](https://user-images.githubusercontent.com/110003333/206831164-ac32a42e-d7f8-4284-b866-8eeb603a4c23.png)
 
 
@@ -32,9 +54,9 @@ control 300
 proc print data=monster;
 run;
 
-##SAS Code for Kruskal Wallis Test
-proc npar1way data = monster wilcoxon;
-class drink;
-var num;
-exact HL Wilcoxon;
-run;
+##SAS Code for Kruskal Wallis Test  
+proc npar1way data = monster wilcoxon;  
+class drink;  
+var num;  
+exact HL Wilcoxon;  
+run;  
