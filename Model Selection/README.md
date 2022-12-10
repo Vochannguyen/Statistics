@@ -1,3 +1,17 @@
+### Model Selection and Comparisons
+#### Criteria
+**LOAD THE SAS BODY FAT**
+1) Largest Adjusted R^2  
+2) Smallest AIC  
+3) Smallest CP  
+4) Smallest AICC  
+5) Smallest SBC  
+6) Biggest F-value 
+7) Which ones did not contain the VIF variables > 10  
+
+
+
+
 #Variable Selection with olsrr and caret: Body Fat Example 
 
 library(olsrr)
