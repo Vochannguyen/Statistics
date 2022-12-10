@@ -1,4 +1,6 @@
 # Type 1 & Type 2 Error  
+![image](https://user-images.githubusercontent.com/110003333/206859610-1b30b916-4039-4d26-91a4-4b73a1431396.png)
+
 
 Null Hypoothesis: mean 1 equal to mean 2
 Alternative Hypothesis: mean 1 not equal to mean 2
