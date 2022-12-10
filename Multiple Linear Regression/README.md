@@ -1,30 +1,90 @@
 # Multiple Linear Regression
 
-## SAS Code
-FILENAME REFFILE '/home/u61905605/Data/Twitterdata.csv';
+## Play-By-Play SAS Code
 
-PROC IMPORT DATAFILE=REFFILE
-	DBMS=CSV
-	OUT=twitter;
-	GETNAMES=YES;
-RUN;
+### 1) Run the data import and print data to look study the data  
+FILENAME REFFILE '/home/u61905605/Data/Twitterdata.csv';  
 
-PROC CONTENTS DATA=twitter; RUN;
+PROC IMPORT DATAFILE=REFFILE  
+	DBMS=CSV  
+	OUT=twitter;  
+	GETNAMES=YES;  
+RUN;  
 
+PROC CONTENTS DATA=twitter; RUN;  
 
-**Option 1**  
-proc glm data=cheese alpha = .05 plots=all;  
-model taste = Acetic H2S / solution clparm;  
-run;
+proc printer data=twitter;  
+run;  
 
-**Option 2**  
+### 2) Check Assumptions without Log and with Log! Make sure to use Interactions!
+#### **Without Log - Don't Remove Outlier, Address them though**  
 proc glm data=twitter alpha = .05 plots=all;  
 class Gender;
-model Followers = FollowEEs TweetsPerWk / solution clparm;  
+model Followers = Gender|FollowEEs|TweetsPerWk / solution clparm;  
 run;
 
+proc sgscatter data=twitter;  
+matrix Followers FollowEEs TweetsPerWk;  
+run;  
+#### Assumptions without log Check - Normality, Linearity, Equal Standard Deviation, Independence, Outliers/Influential Points - USE SCRIPT
 
-### Code for Partial Residuals
+
+#### **With Log - Transforming Data into Log**
+data twitter;  
+set twitter;  
+logfollow = log(Followers);  
+run;  
+
+proc glm data=twitter alpha = .05 plots=all;  
+class Gender;
+model logfollow = Gender|FollowEEs|TweetsPerWk / solution clparm;  
+run;
+
+proc sgscatter data=twitter;  
+matrix logfollow FollowEEs TweetsPerWk;  
+run;  
+
+**Insert the following plots**  
+![image](https://user-images.githubusercontent.com/110003333/206822824-a527f4ce-ab46-415e-8ace-cf612666df90.png)
+
+![image](https://user-images.githubusercontent.com/110003333/206822849-cca863b2-bd3c-4997-b2ed-da3024894a86.png)  
+
+![image](https://user-images.githubusercontent.com/110003333/206822862-c5463de7-e8a4-4370-bf8f-74fa7f74881c.png)
+
+
+#### Assumptions WITH log Check - Normality, Linearity, Equal Standard Deviation, Independence, Outliers/Influential Points - USE SCRIPT
+
+
+
+### 3) Build your regression model: Print Two Different References 
+proc glm data = twitter plots = all;  
+class gender (ref="0");   
+model logfollowers = gender|FollowEES gender| Tweetsperwk/solution clparm;  
+run;    
+
+proc glm data = twitter plots = all;  
+class gender (ref="1");   
+model logfollowers = gender|FollowEES gender| Tweetsperwk/solution clparm;  
+run;    
+
+### 4) Fit your Model (Put Numbers into your Equation for Both Genders) - See Script
+
+### 5) Rebuild your model - Pick out the ones with p-value <.05, then put that one as an equation but if it is an interaction, use the factors with interaction.
+
+### 6) Fit thew new model with the betas given and don't delete any non-significant terms  
+1) Start with the equation that has everything with number coefficients
+2) For gender = 1 or variable = 1, or 0 out the ones that were not significant
+
+
+
+
+
+
+
+
+
+
+## Code for Partial Residuals
 proc corr data = partialres2;  
 var case taste Acetic H2S presh presa;  
 with case taste Acetic H2S presh presa;  
